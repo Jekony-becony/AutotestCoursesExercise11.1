@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertTrue;
+
 public class AddthecontactpersonTest {
     private WebDriver driver;
     private Map<String, Object> vars;
@@ -32,19 +34,27 @@ public class AddthecontactpersonTest {
     @Test
     public void main() {
         driver.get("https://crm.geekbrains.space/contact/");
+        assertTrue(driver.findElement(By.id("prependedInput")).isEnabled());
         driver.findElement(By.id("prependedInput")).click();
         driver.findElement(By.id("prependedInput")).sendKeys("Applanatest1");
+        assertTrue(driver.findElement(By.id("prependedInput2")).isEnabled());
         driver.findElement(By.id("prependedInput2")).click();
         driver.findElement(By.id("prependedInput2")).sendKeys("Student2020!");
         driver.findElement(By.id("remember_me")).click();
+        assertTrue(driver.findElement(By.id("_submit")).isEnabled());
         driver.findElement(By.id("_submit")).click();
         driver.manage().window().setSize(new Dimension(1536, 864));
+
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        assertTrue(driver.findElement(By.linkText("Создать контактное лицо")).isEnabled());
         driver.findElement(By.linkText("Создать контактное лицо")).click();
+        assertTrue(driver.findElement(By.name("crm_contact[lastName]")).isEnabled());
         driver.findElement(By.name("crm_contact[lastName]")).click();
         driver.findElement(By.name("crm_contact[lastName]")).sendKeys("Ivanenko");
+        assertTrue(driver.findElement(By.name("crm_contact[firstName]")).isEnabled());
         driver.findElement(By.name("crm_contact[firstName]")).click();
         driver.findElement(By.name("crm_contact[firstName]")).sendKeys("Olexandr");
+        assertTrue(driver.findElement(By.name("crm_contact[middleName]")).isEnabled());
         driver.findElement(By.name("crm_contact[middleName]")).click();
         driver.findElement(By.name("crm_contact[middleName]")).sendKeys("Dmitrovich");
 
@@ -69,11 +79,13 @@ public class AddthecontactpersonTest {
             Actions builder = new Actions(driver);
             builder.moveToElement(element).release().perform();
         }
-
+        assertTrue(driver.findElement(By.cssSelector(".lang-ru")).isEnabled());
         driver.findElement(By.cssSelector(".lang-ru")).click();
         driver.findElement(By.cssSelector(".lang-ru")).sendKeys("Alya");
+        assertTrue(driver.findElement(By.name("crm_contact[jobTitle]")).isEnabled());
         driver.findElement(By.name("crm_contact[jobTitle]")).click();
         driver.findElement(By.name("crm_contact[jobTitle]")).sendKeys("Abobkin");
+
         driver.findElement(By.name("crm_contact[jobTitle]")).sendKeys(Keys.ENTER);
         System.out.println("Test ended sucessfully!");
     }

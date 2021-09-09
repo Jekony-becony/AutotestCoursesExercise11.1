@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertTrue;
+
 public class AddnewprojectTest {
   private WebDriver driver;
   private Map<String, Object> vars;
@@ -29,11 +31,14 @@ public class AddnewprojectTest {
   @Test
   public void main() {
     driver.get("https://crm.geekbrains.space/project/");
+    assertTrue(driver.findElement(By.id("prependedInput")).isEnabled());
     driver.findElement(By.id("prependedInput")).click();
     driver.findElement(By.id("prependedInput")).sendKeys("Applanatest1");
+    assertTrue(driver.findElement(By.id("prependedInput2")).isEnabled());
     driver.findElement(By.id("prependedInput2")).click();
     driver.findElement(By.id("prependedInput2")).sendKeys("Student2020!");
     driver.findElement(By.id("remember_me")).click();
+    assertTrue(driver.findElement(By.id("_submit")).isEnabled());
     driver.findElement(By.id("_submit")).click();
     driver.manage().window().setSize(new Dimension(1536, 864));
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -49,6 +54,7 @@ public class AddnewprojectTest {
     driver.findElement(By.name("crm_project[businessUnit]")).click();
     {
       WebElement dropdown = driver.findElement(By.name("crm_project[businessUnit]"));
+      assertTrue(dropdown.findElement(By.xpath("//option[. = 'Research & Development']")).isEnabled());
       dropdown.findElement(By.xpath("//option[. = 'Research & Development']")).click();
     }
     driver.findElement(By.cssSelector(".control-group-choice:nth-child(7) > .controls")).click();
@@ -56,24 +62,32 @@ public class AddnewprojectTest {
     driver.findElement(By.name("crm_project[curator]")).click();
     {
       WebElement dropdown = driver.findElement(By.name("crm_project[curator]"));
+      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
       dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
     }
+    assertTrue(driver.findElement(By.name("crm_project[rp]")).isEnabled());
     driver.findElement(By.name("crm_project[rp]")).click();
     {
       WebElement dropdown = driver.findElement(By.name("crm_project[rp]"));
+      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
       dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
     }
+    assertTrue(driver.findElement(By.name("crm_project[administrator]")).isEnabled());
     driver.findElement(By.name("crm_project[administrator]")).click();
     {
       WebElement dropdown = driver.findElement(By.name("crm_project[administrator]"));
+      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
       dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
     }
     driver.findElement(By.name("crm_project[manager]")).click();
     {
       WebElement dropdown = driver.findElement(By.name("crm_project[manager]"));
+      assertTrue(dropdown.findElement(By.xpath("//option[. = 'Антонов Дмитрий']")).isEnabled());
       dropdown.findElement(By.xpath("//option[. = 'Антонов Дмитрий']")).click();
     }
+    assertTrue(driver.findElement(By.cssSelector(".btn-group:nth-child(4) > .btn")).isEnabled());
     driver.findElement(By.cssSelector(".btn-group:nth-child(4) > .btn")).click();
+
     System.out.println("Test ended sucessfully!");
   }
 
