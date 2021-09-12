@@ -31,63 +31,36 @@ public class AddnewprojectTest {
   @Test
   public void main() {
     driver.get("https://crm.geekbrains.space/project/");
-    assertTrue(driver.findElement(By.id("prependedInput")).isEnabled());
-    driver.findElement(By.id("prependedInput")).click();
-    driver.findElement(By.id("prependedInput")).sendKeys("Applanatest1");
-    assertTrue(driver.findElement(By.id("prependedInput2")).isEnabled());
-    driver.findElement(By.id("prependedInput2")).click();
-    driver.findElement(By.id("prependedInput2")).sendKeys("Student2020!");
-    driver.findElement(By.id("remember_me")).click();
-    assertTrue(driver.findElement(By.id("_submit")).isEnabled());
-    driver.findElement(By.id("_submit")).click();
+    AutorizationPage autorizationPage = new AutorizationPage(driver);
+    autorizationPage.clickLoginformUsername().setLoginformUsername("Applanatest1");
+    autorizationPage.clickLoginformPassword().setLoginformPassword("Student2020!");
+    autorizationPage.clickRememberMe();
+    autorizationPage.clickLogin();
     driver.manage().window().setSize(new Dimension(1536, 864));
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.findElement(By.linkText("Создать проект")).click();
-    driver.findElement(By.name("crm_project[name]")).click();
-    driver.findElement(By.name("crm_project[name]")).sendKeys("Abobkins");
+    AddNewProjectPage addNewProjectPage = new AddNewProjectPage(driver);
+    addNewProjectPage.clickCreateProject();
+    addNewProjectPage.clickProjectName().setProjectName("Abobkins");
     {
       WebElement element = driver.findElement(By.cssSelector(".responsive-section:nth-child(1) .responsive-cell:nth-child(1) > .control-group:nth-child(5) > .controls"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.cssSelector(".responsive-section:nth-child(1) .responsive-cell:nth-child(1) > .control-group:nth-child(5) > .controls")).click();
-    driver.findElement(By.name("crm_project[businessUnit]")).click();
-    {
-      WebElement dropdown = driver.findElement(By.name("crm_project[businessUnit]"));
-      assertTrue(dropdown.findElement(By.xpath("//option[. = 'Research & Development']")).isEnabled());
-      dropdown.findElement(By.xpath("//option[. = 'Research & Development']")).click();
-    }
+    addNewProjectPage.clickCrmProjectBusiness();
+    addNewProjectPage.clickCrmProjectBusinessWebElement();
     driver.findElement(By.cssSelector(".control-group-choice:nth-child(7) > .controls")).click();
-    driver.findElement(By.name("crm_project[businessUnit]")).click();
-    driver.findElement(By.name("crm_project[curator]")).click();
-    {
-      WebElement dropdown = driver.findElement(By.name("crm_project[curator]"));
-      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
-      dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
-    }
-    assertTrue(driver.findElement(By.name("crm_project[rp]")).isEnabled());
-    driver.findElement(By.name("crm_project[rp]")).click();
-    {
-      WebElement dropdown = driver.findElement(By.name("crm_project[rp]"));
-      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
-      dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
-    }
-    assertTrue(driver.findElement(By.name("crm_project[administrator]")).isEnabled());
-    driver.findElement(By.name("crm_project[administrator]")).click();
-    {
-      WebElement dropdown = driver.findElement(By.name("crm_project[administrator]"));
-      assertTrue(dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).isEnabled());
-      dropdown.findElement(By.xpath("//option[. = '0 -*/8']")).click();
-    }
-    driver.findElement(By.name("crm_project[manager]")).click();
-    {
-      WebElement dropdown = driver.findElement(By.name("crm_project[manager]"));
-      assertTrue(dropdown.findElement(By.xpath("//option[. = 'Антонов Дмитрий']")).isEnabled());
-      dropdown.findElement(By.xpath("//option[. = 'Антонов Дмитрий']")).click();
-    }
+    addNewProjectPage.clickCrmProjectBusiness();
+    addNewProjectPage.clickCrmProjectCurator();
+    addNewProjectPage.clickCrmProjectCuratorWebElement();
+    addNewProjectPage.clickCrmProjectRp();
+    addNewProjectPage.clickCrmProjectRpWebElement();
+    addNewProjectPage.clickCrmProjectAdministator();
+    addNewProjectPage.clickCrmProjectAdministatorWebElement();
+    addNewProjectPage.clickCrmProjectManager();
+    addNewProjectPage.clickCrmProjectManagerWebElement();
     assertTrue(driver.findElement(By.cssSelector(".btn-group:nth-child(4) > .btn")).isEnabled());
     driver.findElement(By.cssSelector(".btn-group:nth-child(4) > .btn")).click();
-
     System.out.println("Test ended sucessfully!");
   }
 
