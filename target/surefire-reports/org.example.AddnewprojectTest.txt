@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.example.AddnewprojectTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.749 s - in org.example.AddnewprojectTest
